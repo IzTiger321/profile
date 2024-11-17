@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for demonstration, recommend placing in a separate CSS file */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+
+        header {
+            background-color: #413DFF;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 2em;
+            margin: 1em auto;
+            width: 80%;
+            background-color: #FFFEF4;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .project {
+            margin-bottom: 1.5em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #413DFF;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .social-media a {
+            margin-right: 10px;
+            color: #413DFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#social-media">Social Media</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I'm a person who work on spreading news about everything surrounding humanity. Stand for humanity and I'm againts western-supermecy.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Project</h2>
+        <div class="project">
+            <h3>MusicBeep</h3>
+            <p>I create a Discord server that full of bot. I manage to learn setting upand managing Discord server.</p>
+        </div>
+        <div class="project">
+            <h3>Palestine News Sharer</h3>
+            <p>Setting up and managing account on multiple platform. i manage to learn automation, posting design & more</p>
+        </div>
+        <div class="project">
+            <h3>Ayam Tunes</h3>
+            <p>Posting a lyric video. I manage to learn how youtube work more deeply.</p>
+        </div>
+        <!-- Add more projects as needed -->
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience">
+            <h3>Administrator</h3>
+            <p>Team Army Bawang Malaysia - 2020 until 2023</p>
+            <p>Managing group social structure. Mainly work on the telegram channel.</p>
+        </div>
+        <div class="experience">
+            <h3>Member</h3>
+            <p>Khalifah Cyber Crew - 2022 until 2023</p>
+            <p>Contribute to spread the humanity awareness.</p>
+        </div>
+        <div class="experience">
+            <h3>Owner</h3>
+            <p>Palestine News Sharer - 2021 until Now</p>
+            <p>Managing account on multiple platform.</p>
+        </div>
+        <div class="experience">
+            <h3>Owner</h3>
+            <p>Ayam Tunes - 2022 until Now</p>
+            <p>Creating and posting lyric video.</p>
+        </div>
+        <div class="experience">
+            <h3>Owner</h3>
+            <p>MusicBeep - 2020 until 2024</p>
+            <p>Managing Discord server.</p>
+        </div>
+        <!-- Add more experiences as needed -->
+    </section>
+
+    <section id="social-media">
+        <h2>Social Media</h2>
+        <p>Connect with me on:</p>
+        <p class="social-media">
+            <a href="https://www.instagram.com/iz_tiger_321" target="_blank">Instagram</a>
+            <a href="https://bsky.app/profile/iztiger321.bsky.social" target="_blank">Bluesky</a>
+            <a href="https://github.com/IzTiger321" target="_blank">GitHub</a>
+            <a href="https://instabio.cc/IzTiger321" target="_blank">Other</a>
+            <!-- Add more social media links as needed -->
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:iztiger321@proton.me">iztiger321@proton.me</a></p>
+    </section>
+
+<section></section>
+    <footer>
+        <p>&copy; 2024 IzTiger321. All rights reserved.</p>
+    </footer>
+</body>
+</html>
