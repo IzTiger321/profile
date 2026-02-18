@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IzTiger321 | Hub</title>
+    <title>IzTiger321</title>
     <style>
         :root {
             --bg: #ffffff;
-            --text: #111111;
-            --accent: #777777;
-            --border: #eeeeee;
+            --text: #000000;
+            --border: #e0e0e0;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #000000;
                 --text: #ffffff;
-                --accent: #888888;
                 --border: #222222;
             }
         }
@@ -26,87 +24,67 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            padding: 40px 20px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             justify-content: center;
+            padding: 60px 20px;
         }
 
-        main { max-width: 500px; width: 100%; animation: fadeIn 0.8s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        main { max-width: 450px; width: 100%; }
 
-        header { margin-bottom: 50px; }
-        h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
-        .bio { font-size: 0.9rem; color: var(--accent); margin-top: 5px; }
+        h1 { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            letter-spacing: -0.5px; 
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
 
-        .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin: 30px 0 15px 0; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .links { display: grid; gap: 10px; }
 
-        .link-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
-
-        .link-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
+        .link-card {
+            display: block;
+            padding: 16px;
             text-decoration: none;
             color: inherit;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            text-align: center;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
         }
 
-        .link-item:active, .link-item:hover {
+        /* Interaction: Inverts colors on tap */
+        .link-card:active, .link-card:hover {
             background-color: var(--text);
             color: var(--bg);
-            transform: scale(0.98);
+            border-color: var(--text);
         }
 
-        .tag { font-size: 0.7rem; opacity: 0.5; text-transform: lowercase; }
-
-        footer { margin-top: 60px; font-size: 0.7rem; text-align: center; color: var(--accent); }
+        header { border-bottom: 1px solid var(--border); margin-bottom: 30px; padding-bottom: 20px; }
     </style>
 </head>
 <body>
 
     <main>
-        <header>
-            <h1>IzTiger321</h1>
-            <p class="bio">Mobile Developer • Content Creator • Learner</p>
-        </header>
+        <h1>IzTiger321</h1>
 
-        <p class="section-label">Current Project</p>
-        <div class="link-grid">
-            <div class="link-item" style="border-style: dashed;">
-                <p>Building this Site</p>
-                <span class="tag">In Progress</span>
-            </div>
+        <div class="links">
+            <a href="https://github.com/IzTiger321" class="link-card">GITHUB</a>
+            <a href="https://www.patreon.com/IzTiger321" class="link-card">PATREON</a>
+            <a href="https://open.substack.com/pub/iztiger321" class="link-card">SUBSTACK</a>
+            <a href="https://t.me/s/iz_tiger_321" class="link-card">TELEGRAM</a>
+            <a href="https://www.tiktok.com/@iz_tiger_321" class="link-card">TIKTOK</a>
+            <a href="https://bsky.app/profile/iztiger321.bsky.social" class="link-card">BLUESKY</a>
+            <a href="https://mastodon.social/@IzTiger321" class="link-card">MASTODON</a>
+            <a href="https://www.threads.net/@iz_tiger_321" class="link-card">THREADS</a>
+            <a href="https://daun.me/iz_tiger_321" class="link-card">DAUN.ME</a>
+            <a href="https://beacons.ai/iztiger321" class="link-card">BEACONS</a>
+            <a href="https://pixelfed.social/IzTiger321" class="link-card">PIXELFED</a>
+            <a href="https://truthsocial.com/@iz_tiger_321" class="link-card">TRUTH SOCIAL</a>
+            <a href="https://share.upscrolled.com/en/user/b0cdacfa-cbd8-45f1-9dfa-33bce2d302ef/" class="link-card">UPSCROLLED</a>
         </div>
-
-        <p class="section-label">Social & Content</p>
-        <div class="link-grid">
-            <a href="https://github.com/IzTiger321" class="link-item">GitHub <span class="tag">Code</span></a>
-            <a href="https://www.patreon.com/IzTiger321" class="link-item">Patreon <span class="tag">Support</span></a>
-            <a href="https://open.substack.com/pub/iztiger321" class="link-item">Substack <span class="tag">Writing</span></a>
-            <a href="https://www.tiktok.com/@iz_tiger_321" class="link-item">TikTok <span class="tag">Video</span></a>
-            <a href="https://t.me/s/iz_tiger_321" class="link-item">Telegram <span class="tag">Channel</span></a>
-            <a href="https://bsky.app/profile/iztiger321.bsky.social" class="link-item">BlueSky <span class="tag">Social</span></a>
-            <a href="https://mastodon.social/@IzTiger321" class="link-item">Mastodon <span class="tag">Fediverse</span></a>
-            <a href="https://www.threads.net/@iz_tiger_321" class="link-item">Threads <span class="tag">Social</span></a>
-        </div>
-
-        <p class="section-label">More Platforms</p>
-        <div class="link-grid">
-            <a href="https://daun.me/iz_tiger_321" class="link-item">Daun.me</a>
-            <a href="https://beacons.ai/iztiger321" class="link-item">Beacons</a>
-            <a href="https://pixelfed.social/IzTiger321" class="link-item">Pixelfed</a>
-            <a href="https://truthsocial.com/@iz_tiger_321" class="link-item">Truth Social</a>
-        </div>
-
-        <footer>
-            Updated Feb 2026 • Built on Mobile
-        </footer>
     </main>
 
 </body>
