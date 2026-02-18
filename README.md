@@ -24,45 +24,54 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             display: flex;
             justify-content: center;
-            padding: 60px 20px;
+            /* Adaptive padding: smaller on mobile, larger on desktop */
+            padding: 10vh 5vw; 
+            min-height: 100vh;
         }
 
-        main { max-width: 450px; width: 100%; }
+        main { 
+            /* This ensures the content never gets too wide but fills the screen on mobile */
+            width: 100%;
+            max-width: 500px; 
+        }
 
         h1 { 
-            font-size: 1.5rem; 
+            font-size: clamp(1.2rem, 5vw, 1.8rem); /* Fluid typography based on screen size */
             font-weight: 700; 
-            letter-spacing: -0.5px; 
+            letter-spacing: 2px; 
             text-align: center;
             margin-bottom: 40px;
             text-transform: uppercase;
         }
 
-        .links { display: grid; gap: 10px; }
+        .links { 
+            display: flex;
+            flex-direction: column;
+            gap: 12px; 
+        }
 
         .link-card {
             display: block;
-            padding: 16px;
+            padding: 18px;
             text-decoration: none;
             color: inherit;
             border: 1px solid var(--border);
             text-align: center;
             font-size: 0.9rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             transition: all 0.2s ease;
+            width: 100%; /* Ensures button takes full width of the container */
         }
 
-        /* Interaction: Inverts colors on tap */
         .link-card:active, .link-card:hover {
             background-color: var(--text);
             color: var(--bg);
             border-color: var(--text);
         }
 
-        header { border-bottom: 1px solid var(--border); margin-bottom: 30px; padding-bottom: 20px; }
     </style>
 </head>
 <body>
