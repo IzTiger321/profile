@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IzTiger321 | Link in Bio</title>
-    <!-- Tailwind CSS for sleek modern UI -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for visual icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background: #050505;
         }
 
-        /* Continuous scrolling marquee for bulletin banner */
+        /* Continuous marquee ticker animation */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -29,12 +30,12 @@
             animation-play-state: paused;
         }
 
-        /* Custom scrollbar styling */
+        /* Custom scrollbars */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #09090b;
+            background: #050505;
         }
         ::-webkit-scrollbar-thumb {
             background: #27272a;
@@ -43,6 +44,17 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3f3f46;
         }
+
+        /* Smooth tab animations */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-black text-gray-100 min-h-full flex flex-col justify-between selection:bg-red-500/30 selection:text-red-200">
@@ -50,79 +62,78 @@
     <!-- ========================================== -->
     <!-- 1. TOP ANNOUNCEMENT BULLETIN (MARQUEE)    -->
     <!-- ========================================== -->
-    <header class="sticky top-0 z-50 bg-red-950/90 backdrop-blur-md border-b border-red-800/40 text-red-200 text-sm font-medium py-2 overflow-hidden shadow-lg">
+    <header class="sticky top-0 z-50 bg-red-950/90 backdrop-blur-md border-b border-red-800/40 text-red-200 text-xs sm:text-sm font-medium py-2 overflow-hidden shadow-lg">
         <div class="relative flex overflow-x-hidden">
             <div class="animate-marquee flex items-center gap-3 px-4">
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-red-800 text-red-100 uppercase tracking-wider">
-                    <i class="fa-solid font-bold fa-bullhorn mr-1.5"></i> BULLETIN
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-extrabold bg-red-800 text-red-100 uppercase tracking-widest shadow-sm">
+                    <i class="fa-solid fa-bullhorn mr-1.5"></i> BULLETIN
                 </span>
-                <span>Israel is actively seizing more Palestine and Lebanon land illegally.</span>
+                <span class="tracking-wide">Israel is actively seizing more Palestine and Lebanon land illegally.</span>
             </div>
         </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-xl w-full mx-auto px-4 pb-12 pt-4 flex-grow">
+    <main class="max-w-xl w-full mx-auto px-3 sm:px-4 pb-12 pt-4 flex-grow">
 
         <!-- ========================================== -->
         <!-- 2. HEADER BANNER & PROFILE CARD           -->
         <!-- ========================================== -->
-        <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800/80 rounded-3xl overflow-hidden shadow-2xl mb-6">
-            <!-- Header Banner (Gradient Background: Deep Black to Charcoal Grey) -->
-            <div class="h-36 sm:h-44 w-full bg-gradient-to-b from-black via-zinc-900 to-zinc-800 relative flex items-center justify-center overflow-hidden border-b border-zinc-800/60">
-                <!-- Background Pattern overlay -->
-                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                <!-- Banner decorative elements -->
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-red-900/20 rounded-full blur-2xl"></div>
-                <div class="absolute -left-8 -bottom-8 w-32 h-32 bg-zinc-700/20 rounded-full blur-2xl"></div>
+        <div class="bg-gradient-to-b from-zinc-900 via-zinc-950 to-black border border-zinc-800/80 rounded-3xl overflow-hidden shadow-2xl mb-6">
+            <!-- Header Banner Image (Aspect Ratio 1640:924 ≈ 16:9) -->
+            <div class="w-full aspect-[1640/924] relative flex items-center justify-center overflow-hidden border-b border-zinc-800/60 bg-gradient-to-r from-zinc-950 via-zinc-800 to-zinc-900">
+                <img 
+                    src="https://npub15y27uhqvrk4xnjh70nmrj2l2lvwgfmndvwywqwc9lhe0t33nrl2qk95l35.blossom.band/b56f19f5542591ec314b3a2d454dc3db8b1fe2c196fcf9e1809a38db1ed9a99c.png" 
+                    alt="IzTiger321 Banner" 
+                    class="w-full h-full object-cover object-center"
+                    onerror="this.onerror=null; this.src='https://placehold.co/1640x924/18181b/ffffff?text=IzTiger321';"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent pointer-events-none"></div>
             </div>
 
             <!-- Profile Info Container -->
             <div class="px-6 pb-6 relative flex flex-col items-center text-center">
-                <!-- Profile Avatar -->
-                <div class="-mt-16 sm:-mt-20 mb-4 relative group">
-                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-zinc-950 shadow-2xl bg-zinc-900 overflow-hidden ring-2 ring-zinc-700/50 flex items-center justify-center">
+                <!-- Profile Avatar (500x500 square) -->
+                <div class="-mt-14 sm:-mt-16 mb-3.5 relative group">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-4 border-zinc-950 shadow-2xl bg-zinc-900 overflow-hidden ring-2 ring-zinc-700/50 flex items-center justify-center transform group-hover:scale-[1.02] transition-transform duration-300">
                         <img 
-                            src="https://placehold.co/300x300/18181b/e4e4e7?text=IzTiger321" 
-                            alt="IzTiger321 Profile Picture"
-                            class="w-full h-full object-cover transition transform duration-300 group-hover:scale-105"
-                            onerror="this.onerror=null; this.src='https://placehold.co/300x300/18181b/e4e4e7?text=IzTiger321';"
+                            src="https://npub15y27uhqvrk4xnjh70nmrj2l2lvwgfmndvwywqwc9lhe0t33nrl2qk95l35.blossom.band/b9f5f43043716a8826108b17a9cebb7cab039017f9b6dcf42f7f92bed6bc33f9.png" 
+                            alt="IzTiger321 Avatar"
+                            class="w-full h-full object-cover object-center"
+                            onerror="this.onerror=null; this.src='https://placehold.co/500x500/18181b/e4e4e7?text=IzTiger321';"
                         >
                     </div>
-                    <span class="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-zinc-950 rounded-full" title="Active Online"></span>
                 </div>
 
-                <!-- Username -->
+                <!-- Username & Origin Tag -->
                 <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
                     IzTiger321
-                    <i class="fa-solid fa-circle-check text-blue-500 text-lg" title="Verified Profile"></i>
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20" title="Online / Active"></span>
                 </h1>
-
-                <!-- Quick Location Tag -->
-                <p class="text-xs text-zinc-400 mt-1 flex items-center gap-1.5 font-medium">
+                <p class="text-xs text-zinc-400 mt-1 font-medium tracking-wide flex items-center gap-1.5">
                     <i class="fa-solid fa-location-dot text-red-500"></i> Malaysia
                 </p>
             </div>
         </div>
 
         <!-- ========================================== -->
-        <!-- 3. NAVIGATION TAB BUTTONS                 -->
+        <!-- 3. NAVIGATION TABS (4 TABS)                -->
         <!-- ========================================== -->
-        <nav class="grid grid-cols-4 gap-1.5 p-1.5 bg-zinc-900/90 border border-zinc-800 rounded-2xl mb-6 backdrop-blur-md shadow-lg" aria-label="Tabs">
-            <button onclick="switchTab('home')" id="tab-btn-home" class="tab-btn active py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                <i class="fa-solid fa-house"></i>
+        <nav class="grid grid-cols-4 gap-1.5 p-1.5 bg-zinc-900/90 border border-zinc-800/80 rounded-2xl mb-6 shadow-xl backdrop-blur-md">
+            <button onclick="switchTab('home')" id="tab-btn-home" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <i class="fa-solid fa-user text-sm"></i>
                 <span>Home</span>
             </button>
-            <button onclick="switchTab('newsroom')" id="tab-btn-newsroom" class="tab-btn py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                <i class="fa-solid fa-newspaper"></i>
+            <button onclick="switchTab('newsroom')" id="tab-btn-newsroom" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <i class="fa-solid fa-newspaper text-sm"></i>
                 <span>Newsroom</span>
             </button>
-            <button onclick="switchTab('socials')" id="tab-btn-socials" class="tab-btn py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                <i class="fa-solid fa-share-nodes"></i>
+            <button onclick="switchTab('socials')" id="tab-btn-socials" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <i class="fa-solid fa-share-nodes text-sm"></i>
                 <span>Socials</span>
             </button>
-            <button onclick="switchTab('donation')" id="tab-btn-donation" class="tab-btn py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                <i class="fa-solid fa-hand-holding-heart"></i>
+            <button onclick="switchTab('donation')" id="tab-btn-donation" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <i class="fa-solid fa-hand-holding-heart text-sm"></i>
                 <span>Donation</span>
             </button>
         </nav>
@@ -131,216 +142,212 @@
         <!-- 4. TAB CONTENTS                            -->
         <!-- ========================================== -->
 
-        <!-- TAB 1: HOME (ABOUT ME) -->
-        <section id="tab-home" class="tab-content space-y-4">
-            <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800/80 rounded-2xl p-6 shadow-xl">
-                <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2 border-b border-zinc-800 pb-3">
-                    <i class="fa-solid fa-user-astronaut text-zinc-400"></i> About Me
-                </h2>
-                <div class="space-y-3 text-zinc-300 leading-relaxed text-sm sm:text-base">
-                    <p class="font-semibold text-white">IzTiger321</p>
-                    <p>
-                        Hey there! I'm just someone who enjoys browsing the Internet and I'm from Malaysia.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Quick Highlight / Status Box -->
-            <div class="bg-zinc-900/60 border border-zinc-800/60 rounded-2xl p-5 flex items-center justify-between text-xs sm:text-sm text-zinc-400">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-200">
-                        <i class="fa-solid fa-globe"></i>
+        <!-- TAB 1: HOME -->
+        <section id="tab-home" class="tab-content">
+            <div class="bg-gradient-to-b from-zinc-900/80 to-zinc-950 border border-zinc-800/70 rounded-2xl p-6 shadow-xl space-y-4">
+                <div class="flex items-center gap-3 border-b border-zinc-800 pb-3">
+                    <div class="w-9 h-9 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-300">
+                        <i class="fa-solid fa-id-card text-lg"></i>
                     </div>
                     <div>
-                        <p class="font-semibold text-zinc-200">Exploring Content</p>
-                        <p class="text-zinc-500">Active across decentralized & major platforms</p>
+                        <h2 class="text-lg font-bold text-white">About Me</h2>
+                        <p class="text-xs text-zinc-400">Personal bio & introduce</p>
                     </div>
+                </div>
+
+                <div class="text-zinc-300 text-sm leading-relaxed space-y-3">
+                    <p class="bg-zinc-950/60 border border-zinc-800/50 p-4 rounded-xl text-zinc-200 font-medium">
+                        "Hey there! I'm just someone who enjoys browsing the Internet and I'm from Malaysia."
+                    </p>
+                </div>
+
+                <!-- Quick Highlights / Badges -->
+                <div class="pt-2 flex flex-wrap gap-2 text-xs">
+                    <span class="bg-zinc-800/60 border border-zinc-700/50 text-zinc-300 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-globe text-blue-400"></i> Netizen
+                    </span>
+                    <span class="bg-zinc-800/60 border border-zinc-700/50 text-zinc-300 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-flag text-amber-400"></i> Malaysia
+                    </span>
+                    <span class="bg-zinc-800/60 border border-zinc-700/50 text-zinc-300 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-rss text-emerald-400"></i> Content Enthusiast
+                    </span>
                 </div>
             </div>
         </section>
 
         <!-- TAB 2: NEWSROOM -->
-        <section id="tab-newsroom" class="tab-content hidden space-y-3">
-            <div class="text-xs font-semibold uppercase tracking-wider text-zinc-400 px-1 mb-1">
-                Active News Updates & Posts
+        <section id="tab-newsroom" class="tab-content">
+            <div class="mb-4 px-1">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-square-rss text-red-500"></i> Newsroom Updates
+                </h2>
+                <p class="text-xs text-zinc-400">Platforms where I actively post news & updates.</p>
             </div>
-            <div id="newsroom-links-container" class="space-y-2.5">
-                <!-- Javascript will populate modular links here -->
+            <div id="newsroom-links" class="space-y-2.5">
+                <!-- Dynamically populated via JavaScript -->
             </div>
         </section>
 
         <!-- TAB 3: SOCIALS -->
-        <section id="tab-socials" class="tab-content hidden space-y-3">
-            <div class="text-xs font-semibold uppercase tracking-wider text-zinc-400 px-1 mb-1">
-                All Connect & Social Profiles
+        <section id="tab-socials" class="tab-content">
+            <div class="mb-4 px-1">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-blue-500"></i> Social Profiles
+                </h2>
+                <p class="text-xs text-zinc-400">Full list of my social media presence & web pages.</p>
             </div>
-            <div id="socials-links-container" class="space-y-2.5">
-                <!-- Javascript will populate modular links here -->
+            <div id="socials-links" class="space-y-2.5">
+                <!-- Dynamically populated via JavaScript -->
             </div>
         </section>
 
         <!-- TAB 4: DONATION -->
-        <section id="tab-donation" class="tab-content hidden space-y-4">
-            <!-- Disclaimer Box -->
-            <div class="bg-amber-950/30 border border-amber-600/30 rounded-2xl p-4 text-amber-200/90 text-xs sm:text-sm leading-relaxed shadow-lg">
-                <div class="flex items-start gap-3">
-                    <i class="fa-solid fa-shield-halved text-amber-400 text-lg mt-0.5 flex-shrink-0"></i>
-                    <div>
-                        <span class="font-bold text-amber-300 block mb-1">Notice & Disclaimer</span>
-                        <p class="opacity-90">
-                            I am not associated with any particular organization. These are merely recommendations based on my personal opinion. It is important to exercise caution and select the one that you trust, acknowledging that you do so at your own risk.
-                        </p>
-                    </div>
+        <section id="tab-donation" class="tab-content">
+            <!-- Disclaimer Banner -->
+            <div class="bg-amber-950/40 border border-amber-600/40 rounded-2xl p-4 mb-4 text-xs text-amber-200/90 leading-relaxed shadow-lg flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400 text-base mt-0.5 flex-shrink-0"></i>
+                <div>
+                    <strong class="font-bold text-amber-300 uppercase tracking-wider block mb-1">Notice & Disclaimer</strong>
+                    I am not associated with any particular organization. These are merely recommendations based on my personal opinion. It is important to exercise caution and select the one that you trust, acknowledging that you do so at your own risk.
                 </div>
             </div>
 
-            <!-- Donation Links -->
-            <div id="donation-links-container" class="space-y-2.5">
-                <!-- Javascript will populate modular links here -->
+            <div id="donation-links" class="space-y-2.5">
+                <!-- Dynamically populated via JavaScript -->
             </div>
         </section>
 
     </main>
 
     <!-- FOOTER -->
-    <footer class="text-center py-6 border-t border-zinc-900 text-zinc-600 text-xs">
-        <p>© <span id="year"></span> IzTiger321. All rights reserved.</p>
+    <footer class="text-center py-6 border-t border-zinc-900 text-zinc-500 text-xs">
+        <p>&copy; IzTiger321. All rights reserved.</p>
     </footer>
 
     <!-- ========================================== -->
-    <!-- 5. EASY DATA MANAGEMENT & TAB CONTROLLER   -->
+    <!-- DATA & MODULAR SCRIPT SECTION              -->
+    <!-- Easily add, edit, or delete items below   -->
     <!-- ========================================== -->
     <script>
-        // Set year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Data arrays structured for simple maintenance
 
-        /* 
-         * EASY TO EDIT/ADD/REMOVE LINKS DATA STRUCTURE
-         * Simply edit, add, or remove objects from these arrays!
-        */
-
-        const NEWSROOM_DATA = [
+        // 1. NEWSROOM LINKS (Active news posting channels)
+        const newsroomData = [
             { name: "TikTok", url: "https://www.tiktok.com/@iz_tiger_321", icon: "fa-brands fa-tiktok" },
-            { name: "抖音 (Douyin)", url: "https://v.douyin.com/pWwgK6N-yJY/", icon: "fa-brands fa-tiktok" },
+            { name: "抖音 (Douyin)", url: "https://v.douyin.com/pWwgK6N-yJY/", icon: "fa-solid fa-video" },
             { name: "Bluesky", url: "https://bsky.app/profile/iztiger321.bsky.social", icon: "fa-solid fa-cloud" },
             { name: "Mastodon", url: "https://mastodon.social/@IzTiger321", icon: "fa-brands fa-mastodon" },
-            { name: "Pixelfed", url: "https://pixelfed.social/IzTiger321", icon: "fa-solid fa-camera-retro" },
+            { name: "Pixelfed", url: "https://pixelfed.social/IzTiger321", icon: "fa-solid fa-camera" },
             { name: "Nostr", url: "https://njump.to/nprofile1qqs2z90wtsxpm2nfetl8ea3e9040k8yyaekk8z8q8vzlmuh4cce3l4qpzpmhxue69uhkummnw3ezumt0d5hszrnhwden5te0dehhxtnvdakz7qgawaehxw309ahx7um5wghxy6t5vdhkjmn9wgh8xmmrd9skctcpy7dwp", icon: "fa-solid fa-key" },
             { name: "Facebook Page", url: "https://www.facebook.com/share/1BJ35z3tNi/", icon: "fa-brands fa-facebook" },
-            { name: "Substack", url: "https://substack.com/@iztiger321", icon: "fa-solid fa-newspaper" },
+            { name: "Substack", url: "https://substack.com/@iztiger321", icon: "fa-solid fa-bookmark" },
             { name: "WhatsApp Channel", url: "https://whatsapp.com/channel/0029VbBjRbVDp2Q6ncgehh15", icon: "fa-brands fa-whatsapp" },
             { name: "Threads", url: "https://www.threads.com/@iz_tiger_321", icon: "fa-brands fa-threads" },
-            { name: "X formerly Twitter", url: "https://x.com/iz_tiger_321", icon: "fa-brands fa-x-twitter" },
+            { name: "X (formerly Twitter)", url: "https://x.com/iz_tiger_321", icon: "fa-brands fa-x-twitter" },
             { name: "Truth Social", url: "https://truthsocial.com/@iz_tiger_321", icon: "fa-solid fa-bullhorn" },
             { name: "Daun", url: "https://daun.me/iz_tiger_321", icon: "fa-solid fa-leaf" },
             { name: "微博 (Weibo)", url: "https://weibo.com/u/7943364559", icon: "fa-brands fa-weibo" },
             { name: "Instagram", url: "https://www.instagram.com/iz_tiger_321", icon: "fa-brands fa-instagram" },
-            { name: "Upscrolled", url: "https://share.upscrolled.com/en/user/b0cdacfa-cbd8-45f1-9dfa-33bce2d302ef/", icon: "fa-solid fa-angles-up" },
-            { name: "小红书 (Xiaohongshu)", url: "https://www.xiaohongshu.com/user/profile/65be5b86000000000e025440", icon: "fa-solid fa-book-bookmark" },
+            { name: "Upscrolled", url: "https://share.upscrolled.com/en/user/b0cdacfa-cbd8-45f1-9dfa-33bce2d302ef/", icon: "fa-solid fa-arrow-up-right-dots" },
+            { name: "小红书 (Xiaohongshu)", url: "https://www.xiaohongshu.com/user/profile/65be5b86000000000e025440", icon: "fa-solid fa-book-open" },
             { name: "Telegram Channel", url: "https://t.me/iz_tiger_321", icon: "fa-brands fa-telegram" },
-            { name: "Hikmah", url: "https://hikmah.net?referrer=iz_tiger_321", icon: "fa-solid fa-star-and-crescent" },
+            { name: "Hikmah", url: "https://hikmah.net?referrer=iz_tiger_321", icon: "fa-solid fa-feather" },
             { name: "VK", url: "https://vk.com/iz_tiger_321", icon: "fa-brands fa-vk" }
         ];
 
-        const SOCIALS_DATA = [
+        // 2. SOCIALS LINKS (Complete List)
+        const socialsData = [
             { name: "Webpage", url: "https://website.beacons.ai/iztiger321", icon: "fa-solid fa-globe" },
             { name: "Patreon", url: "https://patreon.com/IzTiger321", icon: "fa-brands fa-patreon" },
-            { name: "Substack", url: "https://iztiger321.substack.com/", icon: "fa-solid fa-newspaper" },
+            { name: "Substack", url: "https://iztiger321.substack.com/", icon: "fa-solid fa-pen-nib" },
             { name: "Instagram", url: "https://www.instagram.com/iz_tiger_321", icon: "fa-brands fa-instagram" },
             { name: "TikTok", url: "https://www.tiktok.com/@iz_tiger_321", icon: "fa-brands fa-tiktok" },
-            { name: "小红书 (Xiaohongshu)", url: "https://www.xiaohongshu.com/user/profile/65be5b86000000000e025440", icon: "fa-solid fa-book-bookmark" },
-            { name: "Upscrolled", url: "https://share.upscrolled.com/en/user/b0cdacfa-cbd8-45f1-9dfa-33bce2d302ef/", icon: "fa-solid fa-angles-up" },
-            { name: "Redz", url: "https://redzapp.app.link/6ee562c2-cfe3-4b01-836f-1b1233a3d1b6", icon: "fa-solid fa-mobile-screen" },
+            { name: "小红书 (Xiaohongshu)", url: "https://www.xiaohongshu.com/user/profile/65be5b86000000000e025440", icon: "fa-solid fa-book-open" },
+            { name: "Upscrolled", url: "https://share.upscrolled.com/en/user/b0cdacfa-cbd8-45f1-9dfa-33bce2d302ef/", icon: "fa-solid fa-arrow-up-right-dots" },
+            { name: "Redz", url: "https://redzapp.app.link/6ee562c2-cfe3-4b01-836f-1b1233a3d1b6", icon: "fa-solid fa-circle-dot" },
             { name: "Lemon8", url: "https://s.lemon8-app.com/al/GgkSkcwjFT", icon: "fa-solid fa-lemon" },
-            { name: "X formerly Twitter", url: "https://www.x.com/iz_tiger_321", icon: "fa-brands fa-x-twitter" },
+            { name: "X (formerly Twitter)", url: "https://www.x.com/iz_tiger_321", icon: "fa-brands fa-x-twitter" },
             { name: "Mastodon", url: "https://mastodon.social/@IzTiger321", icon: "fa-brands fa-mastodon" },
             { name: "微博 (Weibo)", url: "https://weibo.com/u/7943364559", icon: "fa-brands fa-weibo" },
-            { name: "Hikmah", url: "https://hikmah.net?referrer=iz_tiger_321", icon: "fa-solid fa-star-and-crescent" },
-            { name: "Pixelfed", url: "https://pixelfed.social/IzTiger321", icon: "fa-solid fa-camera-retro" },
+            { name: "Hikmah", url: "https://hikmah.net?referrer=iz_tiger_321", icon: "fa-solid fa-feather" },
+            { name: "Pixelfed", url: "https://pixelfed.social/IzTiger321", icon: "fa-solid fa-camera" },
             { name: "Bluesky", url: "https://bsky.app/profile/iztiger321.bsky.social", icon: "fa-solid fa-cloud" },
             { name: "Threads", url: "https://www.threads.net/@iz_tiger_321", icon: "fa-brands fa-threads" },
             { name: "VK", url: "https://vk.com/iz_tiger_321", icon: "fa-brands fa-vk" }
         ];
 
-        const DONATION_DATA = [
+        // 3. DONATION LINKS
+        const donationData = [
             { name: "My Fund Action", url: "https://myfundaction.org/", icon: "fa-solid fa-hand-holding-heart" },
-            { name: "MyCare", url: "https://www.mycare.org.my/", icon: "fa-solid fa-heart" },
+            { name: "MyCare", url: "https://www.mycare.org.my/", icon: "fa-solid fa-heart-pulse" },
             { name: "Doctors Without Borders (MSF)", url: "https://www.doctorswithoutborders.org/", icon: "fa-solid fa-user-doctor" },
-            { name: "UN World Food Programme (WFP)", url: "https://www.wfp.org/", icon: "fa-solid fa-bowl-food" },
+            { name: "UN World Food Programme (WFP)", url: "https://www.wfp.org/", icon: "fa-solid fa-bowl-rice" },
             { name: "World Central Kitchen (WCK)", url: "https://wck.org/", icon: "fa-solid fa-utensils" },
-            { name: "Malaysian Medical Relief Society (MERCY Malaysia)", url: "https://mercy.org.my/", icon: "fa-solid fa-kit-medical" },
-            { name: "UN Relief and Works Agency (UNRWA)", url: "https://www.unrwa.org/", icon: "fa-solid fa-building-ngo" },
-            { name: "BDS Movement", url: "https://bdsmovement.net/", icon: "fa-solid fa-bullhorn" },
+            { name: "Malaysian Medical Relief Society (MERCY)", url: "https://mercy.org.my/", icon: "fa-solid fa-kit-medical" },
+            { name: "UNRWA (Palestine Refugees)", url: "https://www.unrwa.org/", icon: "fa-solid fa-hands-holding-child" },
+            { name: "BDS Movement", url: "https://bdsmovement.net/", icon: "fa-solid fa-flag" },
             { name: "Freedom Flotilla Coalition", url: "https://freedomflotilla.org/", icon: "fa-solid fa-ship" },
-            { name: "Tech for Palestine", url: "https://techforpalestine.org/", icon: "fa-solid fa-laptop-code" },
-            { name: "Cinta Gaza Malaysia", url: "https://www.cgm.com.my/", icon: "fa-solid fa-hand-holding-medical" },
+            { name: "Tech for Palestine", url: "https://techforpalestine.org/", icon: "fa-solid fa-code" },
+            { name: "Cinta Gaza Malaysia", url: "https://www.cgm.com.my/", icon: "fa-solid fa-heart" },
             { name: "Cinta Salam Malaysia", url: "https://www.cintasyriamalaysia.com.my/", icon: "fa-solid fa-dove" },
-            { name: "MAPIM", url: "https://www.mapim.org/", icon: "fa-solid fa-people-roof" }
+            { name: "MAPIM", url: "https://www.mapim.org/", icon: "fa-solid fa-building-columns" }
         ];
 
-        // Component renderer for clean modular HTML link buttons
-        function createLinkButton(item, highlight = false) {
+        // Helper to render link button elements cleanly
+        function createLinkButton(item, highlightClass = "hover:border-zinc-500") {
             return `
                 <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
-                   class="group flex items-center justify-between w-full p-3.5 sm:p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800/80 text-white transition-all duration-200 shadow-md hover:shadow-zinc-900/50 hover:-translate-y-0.5">
-                    <div class="flex items-center gap-3.5 overflow-hidden">
-                        <div class="w-9 h-9 rounded-lg bg-zinc-800 border border-zinc-700/50 flex items-center justify-center text-zinc-300 group-hover:text-white group-hover:bg-zinc-700 transition-colors flex-shrink-0">
+                   class="group flex items-center justify-between p-3.5 bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-zinc-950 border border-zinc-800/80 rounded-xl hover:bg-zinc-800/60 ${highlightClass} transition-all duration-200 transform hover:-translate-y-0.5 shadow-md">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-9 h-9 rounded-lg bg-zinc-800 group-hover:bg-zinc-700/80 flex items-center justify-center text-zinc-300 group-hover:text-white transition-colors flex-shrink-0">
                             <i class="${item.icon} text-base"></i>
                         </div>
-                        <span class="font-medium text-sm sm:text-base truncate group-hover:text-white">${item.name}</span>
+                        <span class="text-sm font-semibold text-zinc-200 group-hover:text-white truncate">${item.name}</span>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors flex-shrink-0 ml-2"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors ml-2 flex-shrink-0"></i>
                 </a>
             `;
         }
 
-        // Render all data sections into containers
-        function renderModularLinks() {
-            const newsroomContainer = document.getElementById('newsroom-links-container');
-            const socialsContainer = document.getElementById('socials-links-container');
-            const donationContainer = document.getElementById('donation-links-container');
-
-            if (newsroomContainer) {
-                newsroomContainer.innerHTML = NEWSROOM_DATA.map(item => createLinkButton(item)).join('');
-            }
-            if (socialsContainer) {
-                socialsContainer.innerHTML = SOCIALS_DATA.map(item => createLinkButton(item)).join('');
-            }
-            if (donationContainer) {
-                donationContainer.innerHTML = DONATION_DATA.map(item => createLinkButton(item)).join('');
-            }
+        // Render data into containers
+        function renderLinks() {
+            document.getElementById('newsroom-links').innerHTML = newsroomData.map(item => createLinkButton(item, 'hover:border-red-500/50')).join('');
+            document.getElementById('socials-links').innerHTML = socialsData.map(item => createLinkButton(item, 'hover:border-blue-500/50')).join('');
+            document.getElementById('donation-links').innerHTML = donationData.map(item => createLinkButton(item, 'hover:border-emerald-500/50')).join('');
         }
 
         // Tab Switching Logic
         function switchTab(tabName) {
             // Hide all tab contents
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(el => el.classList.add('hidden'));
-
-            // Show selected tab content
-            const activeContent = document.getElementById(`tab-${tabName}`);
-            if (activeContent) {
-                activeContent.classList.remove('hidden');
-            }
-
-            // Update Tab Button Styles
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-zinc-800', 'text-white', 'shadow-sm', 'border', 'border-zinc-700/50');
-                btn.classList.add('text-zinc-400', 'hover:text-zinc-200');
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
             });
 
+            // Reset tab button states
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-zinc-800', 'text-white', 'shadow-md', 'border', 'border-zinc-700/60');
+                btn.classList.add('text-zinc-400');
+            });
+
+            // Activate target tab content
+            const activeContent = document.getElementById(`tab-${tabName}`);
+            if (activeContent) {
+                activeContent.classList.add('active');
+            }
+
+            // Highlight target tab button
             const activeBtn = document.getElementById(`tab-btn-${tabName}`);
             if (activeBtn) {
-                activeBtn.classList.remove('text-zinc-400', 'hover:text-zinc-200');
-                activeBtn.classList.add('bg-zinc-800', 'text-white', 'shadow-sm', 'border', 'border-zinc-700/50');
+                activeBtn.classList.add('bg-zinc-800', 'text-white', 'shadow-md', 'border', 'border-zinc-700/60');
+                activeBtn.classList.remove('text-zinc-400');
             }
         }
 
-        // Initialize links and default tab state on page load
+        // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
-            renderModularLinks();
-            switchTab('home');
+            renderLinks();
+            switchTab('home'); // Default open tab
         });
     </script>
 </body>
