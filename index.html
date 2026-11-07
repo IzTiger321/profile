@@ -16,7 +16,7 @@
             background: #050505;
         }
 
-        /* Continuous marquee ticker animation */
+        /* Continuous marquee ticker animation (slowed down for readability) */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -24,7 +24,7 @@
         .animate-marquee {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee 35s linear infinite;
+            animation: marquee 100s linear infinite;
         }
         .animate-marquee:hover {
             animation-play-state: paused;
@@ -114,24 +114,28 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- 3. NAVIGATION TABS (4 TABS)                -->
+        <!-- 3. NAVIGATION TABS (5 TABS)                -->
         <!-- ========================================== -->
-        <nav class="grid grid-cols-4 gap-1.5 p-1.5 bg-zinc-900/90 border border-zinc-800/80 rounded-2xl mb-6 shadow-xl backdrop-blur-md">
-            <button onclick="switchTab('home')" id="tab-btn-home" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+        <nav class="grid grid-cols-5 gap-1 p-1.5 bg-zinc-900/90 border border-zinc-800/80 rounded-2xl mb-6 shadow-xl backdrop-blur-md">
+            <button onclick="switchTab('home')" id="tab-btn-home" class="tab-btn py-2.5 px-1 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
                 <i class="fa-solid fa-user text-sm"></i>
                 <span>Home</span>
             </button>
-            <button onclick="switchTab('newsroom')" id="tab-btn-newsroom" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+            <button onclick="switchTab('newsroom')" id="tab-btn-newsroom" class="tab-btn py-2.5 px-1 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
                 <i class="fa-solid fa-newspaper text-sm"></i>
                 <span>Newsroom</span>
             </button>
-            <button onclick="switchTab('socials')" id="tab-btn-socials" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+            <button onclick="switchTab('socials')" id="tab-btn-socials" class="tab-btn py-2.5 px-1 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
                 <i class="fa-solid fa-share-nodes text-sm"></i>
                 <span>Socials</span>
             </button>
-            <button onclick="switchTab('donation')" id="tab-btn-donation" class="tab-btn py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+            <button onclick="switchTab('donation')" id="tab-btn-donation" class="tab-btn py-2.5 px-1 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
                 <i class="fa-solid fa-hand-holding-heart text-sm"></i>
                 <span>Donation</span>
+            </button>
+            <button onclick="switchTab('projects')" id="tab-btn-projects" class="tab-btn py-2.5 px-1 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-200 text-zinc-400 hover:text-white flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <i class="fa-solid fa-diagram-project text-sm"></i>
+                <span>Projects</span>
             </button>
         </nav>
 
@@ -211,6 +215,19 @@
             </div>
 
             <div id="donation-links" class="space-y-2.5">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </section>
+
+        <!-- TAB 5: PROJECTS -->
+        <section id="tab-projects" class="tab-content">
+            <div class="mb-4 px-1">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project text-emerald-500"></i> My Projects
+                </h2>
+                <p class="text-xs text-zinc-400">Tools and guides I've built.</p>
+            </div>
+            <div id="projects-links" class="space-y-2.5">
                 <!-- Dynamically populated via JavaScript -->
             </div>
         </section>
@@ -298,8 +315,21 @@
             { name: "MAPIM", url: "https://www.mapim.org/", icon: "fa-solid fa-building-columns" }
         ];
 
+        // 4. PROJECTS (Add more projects here; "desc" is optional)
+        const projectsData = [
+            {
+                name: "Digital Defense Guide",
+                url: "https://iztiger321.github.io/digital-defense/",
+                icon: "fa-solid fa-shield-halved",
+                desc: "A checklist guide for digital security reinforcement and internet blackout preparedness."
+            }
+        ];
+
         // Helper to render link button elements cleanly
         function createLinkButton(item, highlightClass = "hover:border-zinc-500") {
+            const descHTML = item.desc
+                ? `<span class="block text-xs font-normal text-zinc-400 group-hover:text-zinc-300 mt-0.5 whitespace-normal leading-snug">${item.desc}</span>`
+                : '';
             return `
                 <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
                    class="group flex items-center justify-between p-3.5 bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-zinc-950 border border-zinc-800/80 rounded-xl hover:bg-zinc-800/60 ${highlightClass} transition-all duration-200 transform hover:-translate-y-0.5 shadow-md">
@@ -307,7 +337,10 @@
                         <div class="w-9 h-9 rounded-lg bg-zinc-800 group-hover:bg-zinc-700/80 flex items-center justify-center text-zinc-300 group-hover:text-white transition-colors flex-shrink-0">
                             <i class="${item.icon} text-base"></i>
                         </div>
-                        <span class="text-sm font-semibold text-zinc-200 group-hover:text-white truncate">${item.name}</span>
+                        <div class="min-w-0">
+                            <span class="block text-sm font-semibold text-zinc-200 group-hover:text-white ${item.desc ? '' : 'truncate'}">${item.name}</span>
+                            ${descHTML}
+                        </div>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors ml-2 flex-shrink-0"></i>
                 </a>
@@ -336,6 +369,7 @@
             document.getElementById('newsroom-links').innerHTML = newsroomData.map(item => createLinkButton(item, 'hover:border-red-500/50')).join('');
             document.getElementById('socials-links').innerHTML = socialsData.map(item => createLinkButton(item, 'hover:border-blue-500/50')).join('');
             document.getElementById('donation-links').innerHTML = donationData.map(item => createLinkButton(item, 'hover:border-emerald-500/50')).join('');
+            document.getElementById('projects-links').innerHTML = projectsData.map(item => createLinkButton(item, 'hover:border-emerald-500/50')).join('');
         }
 
         // Tab Switching Logic
