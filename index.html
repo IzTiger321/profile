@@ -18,13 +18,13 @@
 
         /* Continuous marquee ticker animation (slowed down for readability) */
         @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-            display: inline-block;
+            display: inline-flex;
             white-space: nowrap;
-            animation: marquee 100s linear infinite;
+            animation: marquee 90s linear infinite;
         }
         .animate-marquee:hover {
             animation-play-state: paused;
@@ -65,7 +65,7 @@
     <header class="sticky top-0 z-50 bg-red-950/90 backdrop-blur-md border-b border-red-800/40 text-red-200 text-xs sm:text-sm font-medium py-2 overflow-hidden shadow-lg">
         <div class="relative flex overflow-x-hidden">
             <div id="bulletin-ticker" class="animate-marquee flex items-center gap-6 px-4">
-                <!-- Dynamically populated via JavaScript -->
+                <!-- Dynamically populated via Pixelfed Atom Feed -->
             </div>
         </div>
     </header>
@@ -236,7 +236,7 @@
 
     <!-- FOOTER -->
     <footer class="text-center py-6 border-t border-zinc-900 text-zinc-500 text-xs">
-        <p>&copy; IzTiger321. All rights reserved.</p>
+        <p>© IzTiger321. All rights reserved.</p>
     </footer>
 
     <!-- ========================================== -->
@@ -244,11 +244,12 @@
     <!-- Easily add, edit, or delete items below   -->
     <!-- ========================================== -->
     <script>
-        // Data arrays structured for simple maintenance
+        // 0. BULLETIN FEED CONFIGURATION (Pulls latest 7 text-only posts from Pixelfed Atom)
+        const ATOM_FEED_URL = "https://pixelfed.social/users/IzTiger321.atom";
+        const MAX_BULLETIN_ITEMS = 7;
 
-        // 0. BULLETIN TICKER ITEMS (Easily add or remove any number of news items here)
-        const bulletinData = [
-            "Israel is actively seizing more Palestine and Lebanon land illegally.",
+        // Fallback items if feed is unreachable or blocked by browser CORS
+        const fallbackBulletinData = [
             "Defending digital privacy, open-source software, and human rights globally.",
             "Check out my active news feeds and humanitarian recommendation channels below."
         ];
@@ -322,6 +323,12 @@
                 url: "https://iztiger321.github.io/digital-defense/",
                 icon: "fa-solid fa-shield-halved",
                 desc: "A checklist guide for digital security reinforcement and internet blackout preparedness."
+            },
+            {
+                name: "Flamboyan",
+                url: "https://iztiger321.github.io/flamboyan/#news",
+                icon: "fa-solid fa-newspaper",
+                desc: "News and updates hub."
             }
         ];
 
@@ -347,25 +354,91 @@
             `;
         }
 
-        // Render bulletin marquee items dynamically (supporting any number of news items)
-        function renderBulletin() {
+        // Helper to strip all HTML tags/images and return clean plain text
+        function extractPlainText(rawHtmlOrText) {
+            if (!rawHtmlOrText) return "";
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = rawHtmlOrText;
+            // Remove any embedded media or non-text elements just in case
+            tempDiv.querySelectorAll("img, video, audio, figure, script, style").forEach(el => el.remove());
+            return (tempDiv.textContent || tempDiv.innerText || "")
+                .replace(/\s+/g, " ")
+                .trim();
+        }
+
+        // Helper to escape HTML safely before rendering into the ticker
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // Render bulletin marquee items into DOM
+        function renderBulletinItems(items) {
             const bulletinContainer = document.getElementById('bulletin-ticker');
-            // We join items with separator icons/bullets so multiple news items scroll seamlessly
-            const bulletinHTML = bulletinData.map(text => `
+            const bulletinHTML = items.map(text => `
                 <div class="inline-flex items-center gap-2">
                     <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-extrabold bg-red-800 text-red-100 uppercase tracking-widest shadow-sm">
                         <i class="fa-solid fa-bullhorn mr-1.5"></i> BULLETIN
                     </span>
-                    <span class="tracking-wide">${text}</span>
+                    <span class="tracking-wide">${escapeHtml(text)}</span>
                 </div>
                 <span class="text-red-500 font-bold mx-4">•</span>
             `).join('');
-            bulletinContainer.innerHTML = bulletinHTML + bulletinHTML; // duplicate string for smooth infinite looping effect
+            bulletinContainer.innerHTML = bulletinHTML + bulletinHTML; // Duplicate for seamless infinite loop
+        }
+
+        // Fetch and parse the 7 latest text-only entries from Pixelfed Atom feed
+        async function loadAtomBulletin() {
+            renderBulletinItems(["Loading latest updates..."]);
+
+            // Direct fetch with CORS proxy fallback in case Pixelfed blocks cross-origin browser requests
+            const endpoints = [
+                ATOM_FEED_URL,
+                `https://api.allorigins.win/raw?url=${encodeURIComponent(ATOM_FEED_URL)}`
+            ];
+
+            for (const url of endpoints) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) continue;
+
+                    const xmlText = await response.text();
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+                    if (xmlDoc.querySelector("parsererror")) continue;
+
+                    const entries = Array.from(xmlDoc.querySelectorAll("entry"));
+                    const latestTexts = entries
+                        .map(entry => {
+                            // Prefer <content> or <summary> (post caption/body), fallback to <title>
+                            const rawBody =
+                                entry.querySelector("content")?.textContent ||
+                                entry.querySelector("summary")?.textContent ||
+                                entry.querySelector("title")?.textContent ||
+                                "";
+                            return extractPlainText(rawBody);
+                        })
+                        .filter(text => text.length > 0) // Keep only posts that contain text
+                        .slice(0, MAX_BULLETIN_ITEMS);   // Take only the 7 latest posts
+
+                    if (latestTexts.length > 0) {
+                        renderBulletinItems(latestTexts);
+                        return;
+                    }
+                } catch (err) {
+                    // Try next endpoint on error
+                }
+            }
+
+            // Fallback if both direct and proxy requests fail
+            renderBulletinItems(fallbackBulletinData);
         }
 
         // Render data into containers
         function renderLinks() {
-            renderBulletin();
+            loadAtomBulletin();
             document.getElementById('newsroom-links').innerHTML = newsroomData.map(item => createLinkButton(item, 'hover:border-red-500/50')).join('');
             document.getElementById('socials-links').innerHTML = socialsData.map(item => createLinkButton(item, 'hover:border-blue-500/50')).join('');
             document.getElementById('donation-links').innerHTML = donationData.map(item => createLinkButton(item, 'hover:border-emerald-500/50')).join('');
