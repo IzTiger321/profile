@@ -16,7 +16,7 @@
             background: #050505;
         }
 
-        /* Continuous marquee ticker animation (slowed down for readability) */
+        /* Continuous marquee ticker animation (slowed down for comfortable reading) */
         @keyframes marquee {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -24,7 +24,8 @@
         .animate-marquee {
             display: inline-flex;
             white-space: nowrap;
-            animation: marquee 90s linear infinite;
+            animation: marquee 240s linear infinite;
+            will-change: transform;
         }
         .animate-marquee:hover {
             animation-play-state: paused;
@@ -327,8 +328,8 @@
             {
                 name: "Flamboyan",
                 url: "https://iztiger321.github.io/flamboyan/#news",
-                icon: "fa-solid fa-newspaper",
-                desc: "News and updates hub."
+                icon: "fa-solid fa-tower-broadcast",
+                desc: "Live TV and radio hub."
             }
         ];
 
@@ -359,7 +360,6 @@
             if (!rawHtmlOrText) return "";
             const tempDiv = document.createElement("div");
             tempDiv.innerHTML = rawHtmlOrText;
-            // Remove any embedded media or non-text elements just in case
             tempDiv.querySelectorAll("img, video, audio, figure, script, style").forEach(el => el.remove());
             return (tempDiv.textContent || tempDiv.innerText || "")
                 .replace(/\s+/g, " ")
@@ -376,7 +376,7 @@
         // Render bulletin marquee items into DOM
         function renderBulletinItems(items) {
             const bulletinContainer = document.getElementById('bulletin-ticker');
-            const bulletinHTML = items.map(text => `
+            const singlePassHTML = items.map(text => `
                 <div class="inline-flex items-center gap-2">
                     <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-extrabold bg-red-800 text-red-100 uppercase tracking-widest shadow-sm">
                         <i class="fa-solid fa-bullhorn mr-1.5"></i> BULLETIN
@@ -385,14 +385,18 @@
                 </div>
                 <span class="text-red-500 font-bold mx-4">•</span>
             `).join('');
-            bulletinContainer.innerHTML = bulletinHTML + bulletinHTML; // Duplicate for seamless infinite loop
+
+            // Wrap each pass so translateX(-50%) matches one full pass seamlessly
+            bulletinContainer.innerHTML = `
+                <div class="inline-flex items-center">${singlePassHTML}</div>
+                <div class="inline-flex items-center" aria-hidden="true">${singlePassHTML}</div>
+            `;
         }
 
         // Fetch and parse the 7 latest text-only entries from Pixelfed Atom feed
         async function loadAtomBulletin() {
             renderBulletinItems(["Loading latest updates..."]);
 
-            // Direct fetch with CORS proxy fallback in case Pixelfed blocks cross-origin browser requests
             const endpoints = [
                 ATOM_FEED_URL,
                 `https://api.allorigins.win/raw?url=${encodeURIComponent(ATOM_FEED_URL)}`
@@ -412,7 +416,6 @@
                     const entries = Array.from(xmlDoc.querySelectorAll("entry"));
                     const latestTexts = entries
                         .map(entry => {
-                            // Prefer <content> or <summary> (post caption/body), fallback to <title>
                             const rawBody =
                                 entry.querySelector("content")?.textContent ||
                                 entry.querySelector("summary")?.textContent ||
@@ -420,8 +423,8 @@
                                 "";
                             return extractPlainText(rawBody);
                         })
-                        .filter(text => text.length > 0) // Keep only posts that contain text
-                        .slice(0, MAX_BULLETIN_ITEMS);   // Take only the 7 latest posts
+                        .filter(text => text.length > 0)
+                        .slice(0, MAX_BULLETIN_ITEMS);
 
                     if (latestTexts.length > 0) {
                         renderBulletinItems(latestTexts);
@@ -432,7 +435,6 @@
                 }
             }
 
-            // Fallback if both direct and proxy requests fail
             renderBulletinItems(fallbackBulletinData);
         }
 
@@ -447,24 +449,20 @@
 
         // Tab Switching Logic
         function switchTab(tabName) {
-            // Hide all tab contents
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.remove('active');
             });
 
-            // Reset tab button states
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-zinc-800', 'text-white', 'shadow-md', 'border', 'border-zinc-700/60');
                 btn.classList.add('text-zinc-400');
             });
 
-            // Activate target tab content
             const activeContent = document.getElementById(`tab-${tabName}`);
             if (activeContent) {
                 activeContent.classList.add('active');
             }
 
-            // Highlight target tab button
             const activeBtn = document.getElementById(`tab-btn-${tabName}`);
             if (activeBtn) {
                 activeBtn.classList.add('bg-zinc-800', 'text-white', 'shadow-md', 'border', 'border-zinc-700/60');
@@ -475,7 +473,7 @@
         // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
             renderLinks();
-            switchTab('home'); // Default open tab
+            switchTab('home');
         });
     </script>
 </body>
